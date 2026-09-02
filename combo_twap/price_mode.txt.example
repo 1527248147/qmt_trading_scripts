@@ -1,0 +1,7 @@
+# 2026-08-28  QUEUE everywhere.
+# Three sessions of evidence that the price mode was never the problem: every
+# stall this week traced to the connection, the counter's position data, or a
+# give-up counter -- and 8/27 went from 41% to 84% in nineteen minutes on the
+# same passive quoting once the negative-position bug was fixed.
+# To move a single name:   688800.SH=COMPETE
+QUEUE

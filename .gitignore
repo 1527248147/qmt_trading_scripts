@@ -1,0 +1,66 @@
+# ---------------------------------------------------------------------------
+# Run output. These are produced fresh every trading day and are specific to
+# one account on one machine; they are not source and must never be pushed.
+# Several of them contain account numbers and position sizes.
+# ---------------------------------------------------------------------------
+**/logs/*
+**/archive/*
+**/runs/
+**/model_runs/
+
+# The same files if a script ever writes to the project root by mistake (the
+# pre-2026-08-27 behaviour, and still the fallback if logs/ is unwritable).
+run_*.log
+exec_*.csv
+trades_*.csv
+fills_*.csv
+baseline_*.csv
+sell_*.csv
+*.log
+
+# ---------------------------------------------------------------------------
+# Signals / stock picks. The monthly model output that decides what to trade.
+# ---------------------------------------------------------------------------
+**/signals/
+**/picks/
+*_signals*.csv
+*_picks*.csv
+plan_*.csv
+top20_*.csv
+
+# price_mode.txt is a one-line runtime switch the operator flips mid-session
+# (QUEUE vs COMPETE). Tracking it was tried on 2026-08-29 and reverted the
+# same day: every intraday flip then dirties the working tree, and
+# publish.sh refuses to publish from one. The committed template is
+# price_mode.txt.example.
+**/price_mode.txt
+
+# ---------------------------------------------------------------------------
+# Local machine state
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.bak
+*.bak_*
+*.old
+*.orig
+.venv/
+venv/
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+desktop.ini
+
+# Anything holding a token or an account credential, in case one is ever added.
+*.token
+*secret*
+*credential*
+.env
+
+# ...but keep the empty folders themselves, so a fresh clone has somewhere to
+# write on day one rather than falling back to C:\Users\Public\Documents.
+# These must be "logs/*" above, not "logs/" -- git does not descend into an
+# ignored DIRECTORY, so a bare "logs/" would leave the negations below dead.
+!**/logs/.gitkeep
+!**/archive/.gitkeep
